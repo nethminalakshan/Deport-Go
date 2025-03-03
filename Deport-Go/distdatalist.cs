@@ -105,6 +105,28 @@ namespace Deport_Go
 
 
         }
+        public void deleteatdist(string distname)
+        {
+            distnode? current = Head;
+            distnode? previous = null;
+            while (current != null)
+            {
+                if (string.Equals(current.distname, distname, StringComparison.OrdinalIgnoreCase))
+                {
+                    if (previous == null)
+                    {
+                        Head = current.Next;
+                    }
+                    else
+                    {
+                        previous.Next = current.Next;
+                    }
+                    Count--;
+                }
+                previous = current;
+                current = current.Next;
+            }
+        }
         public void printdistbyroot(int rootno)
         {
             distnode? current = Head;

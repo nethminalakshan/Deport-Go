@@ -24,9 +24,9 @@ namespace Deport_Go
             Count = 0;
         }
 
-        public void AddFront(string regnoget, string busnameget, float timeget, int rootno,int seat)
+        public void AddFront(string regnoget, string busnameget, float timeget, int rootno, int seat)
         {
-            busnode newNode = new busnode(regnoget, busnameget, timeget, rootno,seat);
+            busnode newNode = new busnode(regnoget, busnameget, timeget, rootno, seat);
             if (Head == null)
             {
                 Head = newNode;
@@ -40,9 +40,9 @@ namespace Deport_Go
             Count++;
         }
 
-        public void AddBack(string regnoget, string busnameget, float timeget, int rootno,int seat)
+        public void AddBack(string regnoget, string busnameget, float timeget, int rootno, int seat)
         {
-            busnode newNode = new busnode(regnoget, busnameget, timeget, rootno,seat);
+            busnode newNode = new busnode(regnoget, busnameget, timeget, rootno, seat);
             if (Tail == null)
             {
                 Head = newNode;
@@ -75,7 +75,7 @@ namespace Deport_Go
             }
         }
 
-        public void AddAt(string regnoget, string busnameget, float timeget, int rootno,int seat, int index)
+        public void AddAt(string regnoget, string busnameget, float timeget, int rootno, int seat, int index)
         {
             busnode newNode = new busnode(regnoget, busnameget, timeget, rootno, seat);
 
@@ -118,7 +118,7 @@ namespace Deport_Go
             busnode? temp = Head;
             busnode? prev = null;
 
-            
+
             if (temp != null && temp.regno == regno)
             {
                 Head = temp.Next;
@@ -126,29 +126,29 @@ namespace Deport_Go
                 return;
             }
 
-            
+
             while (temp != null && temp.regno != regno)
             {
                 prev = temp;
                 temp = temp.Next;
             }
 
-            
+
             if (temp == null)
             {
                 Console.WriteLine($"Bus {regno} not found.");
                 return;
             }
 
-            
+
             prev.Next = temp.Next;
             Console.WriteLine($"Bus {regno} removed successfully.");
         }
 
-        public void timesort(busdatalist x,float time)
+        public void timesort(busdatalist x, float time)
         {
             if (x.Head == null || x.Head.Next == null)
-                return; 
+                return;
 
             bool swapped;
             busnode? current;
@@ -165,20 +165,20 @@ namespace Deport_Go
 
                     if (current.time > nextNode.time)
                     {
-                        
+
                         SwapBusNodes(current, nextNode);
                         swapped = true;
                     }
 
-                    current = current.Next; 
+                    current = current.Next;
                 }
             } while (swapped);
 
-            
-            PrintBusList(x,time);
+
+            PrintBusList(x, time);
         }
 
-        
+
         private void SwapBusNodes(busnode a, busnode b)
         {
             float tempTime = a.time;
@@ -197,7 +197,7 @@ namespace Deport_Go
             b.rootno = tempRootNo;
         }
 
-        
+
         private void PrintBusList(busdatalist x, float t)
         {
             busnode? temp = x.Head;
@@ -207,18 +207,21 @@ namespace Deport_Go
                 {
                     Console.WriteLine(temp.busname + "\t" + temp.regno + "\t" + temp.time + "\t" + temp.aviseat + "\t" + temp.rootno);
                 }
-                
+
                 temp = temp.Next;
             }
         }
         public void printbuslistbyroot(int rootno)
         {
             busnode? temp = Head;
+            Console.WriteLine("Bus Name\tReg No\t\tTime\tAvailable Seats\tRoot No\n");
             while (temp != null)
             {
+
                 if (temp.rootno == rootno)
                 {
-                    Console.WriteLine(temp.busname + "\t" + temp.regno + "\t" + temp.time + "\t" + temp.aviseat + "\t" + temp.rootno);
+
+                    Console.WriteLine(temp.busname + "\t\t" + temp.regno + "\t" + temp.time + "\t" + temp.aviseat + "\t\t" + temp.rootno);
                 }
                 temp = temp.Next;
             }
@@ -226,6 +229,7 @@ namespace Deport_Go
             Console.WriteLine("Sort By:");
             Console.WriteLine("1.Time");
             Console.WriteLine("2.Available Seats");
+            Console.WriteLine("Back to User Panel");
             Console.WriteLine("***************");
             int sortby = Convert.ToInt32(Console.ReadLine());
             if (sortby == 1)
@@ -235,6 +239,15 @@ namespace Deport_Go
             else if (sortby == 2)
             {
                 availablesortbyroot(this, rootno);
+            }
+            else if (sortby == 3)
+            {
+                return;
+            }
+            else
+            {
+                Console.WriteLine("Invalid Input");
+
             }
 
         }
@@ -391,21 +404,51 @@ namespace Deport_Go
 
         public void timeandrootbussarch(busdatalist x, int rootno, float time)
         {
-            busnode? temp = x.Head;
+            if (rootno > 0 && time > 0)
+            {
+                busnode? temp = x.Head;
+                if (x.Head == null)
+                {
+                    Console.WriteLine("No buses found in this root");
+                }
+
+                while (temp != null)
+                {
+                    if (temp.rootno == rootno && temp.time >= time)
+                    {
+                        Console.WriteLine("Bus Name\tReg No\tTime\tAvailable Seats\tRoot No");
+                        Console.WriteLine(temp.busname + "\t" + temp.regno + "\t" + temp.time + "\t" + temp.aviseat + "\t" + temp.rootno);
+                    }
+                    temp = temp.Next;
+                }
+
+
+
+            }
+            else
+            {
+                { Console.WriteLine("Invalid input"); }
+            }
+
+
+
+
+
+        }
+        public void bookseat(string regno, int count)
+        {
+            busnode? temp = Head;
             while (temp != null)
             {
-                if (temp.rootno == rootno && temp.time >= time)
+                if (temp.regno == regno)
                 {
-                    Console.WriteLine(temp.busname + "\t" + temp.regno + "\t" + temp.time + "\t" + temp.aviseat + "\t" + temp.rootno);
+                    temp.bookseat(count);
+                    return;
                 }
                 temp = temp.Next;
             }
+            Console.WriteLine("Bus not found");
         }
-
-
-
-
-
     }
 }
 

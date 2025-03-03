@@ -69,7 +69,7 @@ namespace Deport_Go
         {
             Console.WriteLine("Destination: " + destination);
             int rootno = findroot(y,destination);
-            findbus(busdatalist, rootno, time);
+            findbus(x, rootno, time);
 
         }
 
