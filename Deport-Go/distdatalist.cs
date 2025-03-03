@@ -123,21 +123,30 @@ namespace Deport_Go
                 }
                 current = current.Next;
             }
-            Console.WriteLine("***************");
-            Console.WriteLine("Sort By:");
-            Console.WriteLine("1.Distance");
-            Console.WriteLine("2.Price");
-            Console.WriteLine("***************");
-            int sortby = Convert.ToInt32(Console.ReadLine());
-            if (sortby == 1)
-            {
-                printdistbyroot(rootno);
-            }
-            else if (sortby == 2)
-            {
-                printsortprice(rootno);
-            }
-        }
+            //Console.WriteLine("***************");
+            //Console.WriteLine("Sort By:");
+            //Console.WriteLine("1.Distance");
+            //Console.WriteLine("2.Price");
+            //Console.WriteLine("3.Back");
+            //Console.WriteLine("***************");
+            //int sortby = Convert.ToInt32(Console.ReadLine());
+            //if (sortby == 1)
+            //{
+            //    printdistbyroot(rootno);
+            //}
+            //else if (sortby == 2)
+            //{
+            //    printsortprice(rootno);
+            //}
+            //else if (sortby == 3)
+            //{
+            //    return;
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Invalid Input");
+            //}
+        }//insertion sort
         public void printsortprice(int rootno)
         {
             distnode? current = Head;
@@ -184,7 +193,7 @@ namespace Deport_Go
             
             x.Print();
 
-        }
+        }//quick sort
         public void printsortedsitbyroot(int rootno)
         {
             distnode? current = Head;
@@ -280,7 +289,7 @@ namespace Deport_Go
             distnode? current = Head;
             while (current != null)
             {
-                if (current.distname == destination)
+                if (string.Equals(current.distname, destination, StringComparison.OrdinalIgnoreCase))
                 {
                     return current.rootno;
                 }
@@ -288,6 +297,7 @@ namespace Deport_Go
             }
             return -1;
         }
+
 
 
     }

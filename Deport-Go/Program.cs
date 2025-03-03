@@ -82,10 +82,11 @@ void bydefault()
 }
 
 bydefault();
+busdatalist.Print();
 
 while (t == true)
 {
-    Console.Clear();
+    
     Console.WriteLine("========================================");
     Console.WriteLine("          Welcome to Deport-Go          ");
     Console.WriteLine("========================================");
@@ -183,13 +184,13 @@ while (t == true)
             {
                 Console.Write("Enter the root number: ");
                 int rootno = Convert.ToInt32(Console.ReadLine());
-                operationcall.printdist(rootno);
+                distlist.printdistbyroot(rootno);
             }
             else if (operation == 2)
             {
                 Console.Write("Enter the root number: ");
                 int rootno = Convert.ToInt32(Console.ReadLine());
-                operationcall.printbus(rootno);
+                busdatalist.printbuslistbyroot(rootno);
             }
             else if (operation == 3)
             {

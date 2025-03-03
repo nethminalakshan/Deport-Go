@@ -12,3 +12,4 @@ C:\Users\nethm\Downloads\Deport-Go\Deport-Go\obj\Debug\net9.0\refint\Deport-Go.d
 C:\Users\nethm\Downloads\Deport-Go\Deport-Go\obj\Debug\net9.0\Deport-Go.pdb
 C:\Users\nethm\Downloads\Deport-Go\Deport-Go\obj\Debug\net9.0\Deport-Go.genruntimeconfig.cache
 C:\Users\nethm\Downloads\Deport-Go\Deport-Go\obj\Debug\net9.0\ref\Deport-Go.dll
+C:\Users\nethm\Downloads\Deport-Go\Deport-Go\obj\Debug\net9.0\Deport-Go.sourcelink.json

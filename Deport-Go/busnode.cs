@@ -17,13 +17,13 @@ namespace Deport_Go
 
         public busnode? Next;
 
-        public busnode(string regnoget, string busnameget, float timeget, int rootno,int seat)
+        public busnode(string regnoget, string busnameget, float timeget, int rootnoget,int seat)
         {
             regno = regnoget;
             busname = busnameget;
             time = timeget;
             aviseat = seat;
-            rootno = rootno;
+            rootno = rootnoget;
         }
         public void bookseat(int count)
         {

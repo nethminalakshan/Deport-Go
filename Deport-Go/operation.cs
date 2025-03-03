@@ -65,18 +65,18 @@ namespace Deport_Go
             x.printbuslistbyroot(rootno);
         }
 
-        public void searchbus(busdatalist x,string destination, float time)
+        public void searchbus( distdatalist y,busdatalist x,string destination, float time)
         {
             Console.WriteLine("Destination: " + destination);
-            int rootno = findroot(destination);
+            int rootno = findroot(y,destination);
             findbus(busdatalist, rootno, time);
 
         }
 
-        private int findroot(string destination)
+        private int findroot( distdatalist y,string destination)
         {
-            distdatalist x = new distdatalist();
-            return x.findroot(destination);
+            
+            return y.findroot(destination);
         }
         private void findbus(busdatalist x, int rootno, float time)
         {
