@@ -1,0 +1,14 @@
+C:\Users\nethm\Downloads\Deport-Go\Deport-Go\bin\Debug\net9.0\Deport-Go.exe
+C:\Users\nethm\Downloads\Deport-Go\Deport-Go\bin\Debug\net9.0\Deport-Go.deps.json
+C:\Users\nethm\Downloads\Deport-Go\Deport-Go\bin\Debug\net9.0\Deport-Go.runtimeconfig.json
+C:\Users\nethm\Downloads\Deport-Go\Deport-Go\bin\Debug\net9.0\Deport-Go.dll
+C:\Users\nethm\Downloads\Deport-Go\Deport-Go\bin\Debug\net9.0\Deport-Go.pdb
+C:\Users\nethm\Downloads\Deport-Go\Deport-Go\obj\Debug\net9.0\Deport-Go.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nethm\Downloads\Deport-Go\Deport-Go\obj\Debug\net9.0\Deport-Go.AssemblyInfoInputs.cache
+C:\Users\nethm\Downloads\Deport-Go\Deport-Go\obj\Debug\net9.0\Deport-Go.AssemblyInfo.cs
+C:\Users\nethm\Downloads\Deport-Go\Deport-Go\obj\Debug\net9.0\Deport-Go.csproj.CoreCompileInputs.cache
+C:\Users\nethm\Downloads\Deport-Go\Deport-Go\obj\Debug\net9.0\Deport-Go.dll
+C:\Users\nethm\Downloads\Deport-Go\Deport-Go\obj\Debug\net9.0\refint\Deport-Go.dll
+C:\Users\nethm\Downloads\Deport-Go\Deport-Go\obj\Debug\net9.0\Deport-Go.pdb
+C:\Users\nethm\Downloads\Deport-Go\Deport-Go\obj\Debug\net9.0\Deport-Go.genruntimeconfig.cache
+C:\Users\nethm\Downloads\Deport-Go\Deport-Go\obj\Debug\net9.0\ref\Deport-Go.dll
