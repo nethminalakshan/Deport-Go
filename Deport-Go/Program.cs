@@ -8,7 +8,7 @@ operation operationcall = new operation();
 distdatalist distlist = new distdatalist();
 busdatalist busdatalist = new busdatalist();
 userlist userlist = new userlist();
-
+BusRouteGraph busRouteGraph = new BusRouteGraph();
 void bydefault()
 {
     string[] distnamelist = new string[] {
@@ -136,7 +136,9 @@ void bydefault()
 
 }
 
+
 bydefault();
+
 
 while (t == true)
 {
@@ -183,9 +185,10 @@ while (t == true)
                 Console.WriteLine("-----------------------------------------");
                 Console.WriteLine("8. Add User");
                 Console.WriteLine("9. View User List");
-                Console.WriteLine("10. Delete User");
+                Console.WriteLine("10.Find Optimal Root:");
+                Console.WriteLine("11. Delete User");
                 Console.WriteLine("-----------------------------------------");
-                Console.WriteLine("11. Go to Main Menu");
+                Console.WriteLine("12. Go to Main Menu");
                 Console.WriteLine("========================================");
                 Console.Write("Please select an operation (1-11): ");
                 int operation = Convert.ToInt32(Console.ReadLine());
@@ -248,6 +251,7 @@ while (t == true)
                     case 9:
                         operationcall.printuser(userlist);
                         break;
+
                     case 10:
                         Console.Write("Enter the username to delete: ");
                         string usernameToDelete = Console.ReadLine();
@@ -328,6 +332,7 @@ while (t == true)
                     Console.WriteLine("2. View Bus List");
                     Console.WriteLine("3. Search Bus");
                     Console.WriteLine("4. Book Seat");
+                    Console.WriteLine("5. TO Find Optimal Root");
                     Console.WriteLine("5. Go to Main Menu");
                     Console.WriteLine("========================================");
                     Console.Write("Please select an operation (1-5): ");
@@ -359,13 +364,20 @@ while (t == true)
                             int seat = Convert.ToInt32(Console.ReadLine());
                             busdatalist.bookseat(regno, seat);
                             break;
+
                         case 5:
+                            Console.WriteLine("-------------------------------------");
+                            busRouteGraph.UserGraph();
                             break;
+
+                        case 6:
+                            break;
+                        
                         default:
                             Console.WriteLine("Invalid operation selected.");
                             break;
                     }
-                    if (operation == 5) break;
+                    if (operation == 6) break;
                     Console.WriteLine("Press any key to continue...");
                     Console.ReadKey();
                 }
@@ -398,3 +410,6 @@ while (t == true)
         Console.ReadKey();
     }
 }
+
+
+    
