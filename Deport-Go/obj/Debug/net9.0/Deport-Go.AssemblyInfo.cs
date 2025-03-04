@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Deport-Go")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+51d1ed683196876174cebdf3fff55c0a3ffeeee9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+83cb173f9659301b7701eda0e528f21e70ce51c7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Deport-Go")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Deport-Go")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

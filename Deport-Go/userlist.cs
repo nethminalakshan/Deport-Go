@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Deport_Go;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -26,7 +27,7 @@ namespace Deport_Go
 
         public void AddFront(string nameget, string usernameget, string passwordget, string emailget, string phoneget, string addressget, string nicget)
         {
-            usernode newNode = new usernode(nameget,usernameget, passwordget, emailget, phoneget, addressget, nicget);
+            usernode newNode = new usernode(nameget, usernameget, passwordget, emailget, phoneget, addressget, nicget);
             if (Head == null)
             {
                 Head = newNode;
@@ -43,7 +44,7 @@ namespace Deport_Go
 
         public void AddBack(string nameget, string usernameget, string passwordget, string emailget, string phoneget, string addressget, string nicget)
         {
-            usernode newNode = new usernode(nameget,usernameget, passwordget, emailget, phoneget, addressget, nicget);
+            usernode newNode = new usernode(nameget, usernameget, passwordget, emailget, phoneget, addressget, nicget);
             if (Tail == null)
             {
                 Head = newNode;
@@ -68,8 +69,8 @@ namespace Deport_Go
             {
                 if (current.username.Length < 8)
                 {
-                    
-                    if(current.email.Length< 16)
+
+                    if (current.email.Length < 16)
                     {
                         Console.WriteLine($"{current.username}\t\t{current.password}\t\t\t{current.email}\t{current.phone}\t{current.address}\t{current.nic}");
                     }
@@ -90,7 +91,7 @@ namespace Deport_Go
 
                     }
                 }
-                
+
                 current = current.Next;
 
             }
@@ -108,7 +109,7 @@ namespace Deport_Go
             }
             if (index == 0)
             {
-                AddFront(nameget,usernameget, passwordget, emailget, phoneget, addressget, nicget);
+                AddFront(nameget, usernameget, passwordget, emailget, phoneget, addressget, nicget);
             }
             else if (index == Count)
             {
@@ -180,8 +181,204 @@ namespace Deport_Go
             }
             return null;
         }
+        ///////////////////////////////////////////////selection sort//////////////////////////////////
+        public void sortbynic(userlist x)
+        {
+
+            if (x.Head == null || x.Head.Next == null)
+            {
+                Console.WriteLine("The list is empty or has only one user. No sorting needed.");
+                return;
+            }
+
+            usernode current = x.Head;
+
+
+            while (current != null)
+            {
+
+                usernode min = current;
+                usernode next = current.Next;
+
+
+                while (next != null)
+                {
+                    if (string.Compare(next.nic, min.nic) < 0)
+                    {
+                        min = next;
+                    }
+                    next = next.Next;
+                }
+
+                if (min != current)
+                {
+
+                    string tempName = current.name;
+                    string tempUsername = current.username;
+                    string tempPassword = current.password;
+                    string tempEmail = current.email;
+                    string tempPhone = current.phone;
+                    string tempAddress = current.address;
+                    string tempNic = current.nic;
+
+                    current.name = min.name;
+                    current.username = min.username;
+                    current.password = min.password;
+                    current.email = min.email;
+                    current.phone = min.phone;
+                    current.address = min.address;
+                    current.nic = min.nic;
+
+                    min.name = tempName;
+                    min.username = tempUsername;
+                    min.password = tempPassword;
+                    min.email = tempEmail;
+                    min.phone = tempPhone;
+                    min.address = tempAddress;
+                    min.nic = tempNic;
+                }
+
+
+                current = current.Next;
+            }
+
+
+            Console.WriteLine("Sorted by NIC number:");
+            x.Print();
+        }
+
+
+        ////////////////////////////////////////////////////quick sort////////////////////////////////////////
+
+        public void sortbyusername(userlist x)
+        {
+            if (x.Head == null || x.Head.Next == null)
+            {
+                Console.WriteLine("The list is empty or has only one user. No sorting needed.");
+                return;
+            }
+
+            int count = 0;
+            usernode current = x.Head;
+            while (current != null)
+            {
+                count++;
+                current = current.Next;
+            }
+
+            usernode[] nodesArray = new usernode[count];
+            current = x.Head;
+            for (int i = 0; i < count; i++)
+            {
+                nodesArray[i] = current;
+                current = current.Next;
+            }
+
+            QuickSort(nodesArray, 0, count - 1);
+
+            x.Head = nodesArray[0];
+            for (int i = 0; i < count - 1; i++)
+            {
+                nodesArray[i].Next = nodesArray[i + 1];
+            }
+            nodesArray[count - 1].Next = null;
+
+            Console.WriteLine("Sorted by username:");
+            x.Print();
+        }
+
+        private void QuickSort(usernode[] nodesArray, int low, int high)
+        {
+            if (low < high)
+            {
+                int pivotIndex = Partition(nodesArray, low, high);
+                QuickSort(nodesArray, low, pivotIndex - 1);
+                QuickSort(nodesArray, pivotIndex + 1, high);
+            }
+        }
+
+        private int Partition(usernode[] nodesArray, int low, int high)
+        {
+            string pivot = nodesArray[high].username;
+            int i = low - 1;
+
+            for (int j = low; j < high; j++)
+            {
+                if (string.Compare(nodesArray[j].username, pivot) <= 0)
+                {
+                    i++;
+                    Swap(nodesArray, i, j);
+                }
+            }
+
+            Swap(nodesArray, i + 1, high);
+            return i + 1;
+        }
+
+        private void Swap(usernode[] nodesArray, int i, int j)
+        {
+            usernode temp = nodesArray[i];
+            nodesArray[i] = nodesArray[j];
+            nodesArray[j] = temp;
+        }
+
+
+
+
+    
+    //insertion sort/////////////    
+
+    public void sortbyphone(userlist x)
+        {
+            if (x.Head == null || x.Head.Next == null)
+            {
+                Console.WriteLine("The list is empty or has only one user. No sorting needed.");
+                return;
+            }
+
+            usernode sorted = null;
+            usernode current = x.Head;
+
+            while (current != null)
+            {
+                usernode next = current.Next;
+
+                if (sorted == null || string.Compare(current.phone, sorted.phone) < 0)
+                {
+                    current.Next = sorted;
+                    sorted = current;
+                }
+                else
+                {
+                    usernode temp = sorted;
+                    while (temp.Next != null && string.Compare(current.phone, temp.Next.phone) > 0)
+                    {
+                        temp = temp.Next;
+                    }
+                    current.Next = temp.Next;
+                    temp.Next = current;
+                }
+
+                current = next;
+            }
+
+            x.Head = sorted;
+
+            Console.WriteLine("Sorted by phone number:");
+            x.Print();
+        }
+
 
         
+                
+
+
 
     }
 }
+
+
+
+
+
+

@@ -1,4 +1,6 @@
-﻿using Deport_Go;
+﻿using System;
+using Deport_Go;
+
 bool t = true;
 bool t_admin = true;
 
@@ -6,6 +8,7 @@ operation operationcall = new operation();
 distdatalist distlist = new distdatalist();
 busdatalist busdatalist = new busdatalist();
 userlist userlist = new userlist();
+
 void bydefault()
 {
     string[] distnamelist = new string[] {
@@ -126,9 +129,9 @@ void bydefault()
     "198812345678", "199012345678", "199612345678", "199712345678", "199812345678", "199212345678"
 };
 
-    for(int x=0;nics.Length>x;x++)
+    for (int x = 0; nics.Length > x; x++)
     {
-        userlist.AddBack(names[x],usernames[x], passwords[x], emails[x], phones[x], addresses[x], nics[x]);
+        userlist.AddBack(names[x], usernames[x], passwords[x], emails[x], phones[x], addresses[x], nics[x]);
     }
 
 }
@@ -137,32 +140,31 @@ bydefault();
 
 while (t == true)
 {
-    
+    Console.Clear();
     Console.WriteLine("========================================");
     Console.WriteLine("          Welcome to Deport-Go          ");
     Console.WriteLine("========================================");
-    Console.WriteLine("1. Admin");
-    Console.WriteLine("2. User");
+    Console.WriteLine("1. Admin Login");
+    Console.WriteLine("2. User Login");
     Console.WriteLine("3. Exit");
     Console.WriteLine("========================================");
-    Console.Write("Select account: ");
+    Console.Write("Please select an option (1-3): ");
     int account = Convert.ToInt32(Console.ReadLine());
 
-    /////admin side//////////
+    ///// Admin Side ///////
     if (account == 1)
     {
+        Console.Clear();
         Console.WriteLine("========================================");
-        Console.WriteLine("          Admin login          ");
-
+        Console.WriteLine("          Admin Login          ");
+        Console.WriteLine("========================================");
         Console.Write("Enter the password: ");
-        Console.WriteLine("========================================");
-        
         string password = Console.ReadLine();
-        if (password == "admin")
 
+        if (password == "admin")
         {
             Console.Clear();
-            Console.WriteLine("Welcome Admin");
+            Console.WriteLine("Welcome Admin!");
             t_admin = true; // Reset t_admin to true
             while (t_admin == true)
             {
@@ -175,91 +177,89 @@ while (t == true)
                 Console.WriteLine("3. View Next Time Bus");
                 Console.WriteLine("4. Delete A Bus");
                 Console.WriteLine("-----------------------------------------");
-                Console.WriteLine("5.Add Destination");
+                Console.WriteLine("5. Add Destination");
                 Console.WriteLine("6. View Destination List");
-                Console.WriteLine("7. delete Destination");
+                Console.WriteLine("7. Delete Destination");
                 Console.WriteLine("-----------------------------------------");
                 Console.WriteLine("8. Add User");
                 Console.WriteLine("9. View User List");
                 Console.WriteLine("10. Delete User");
                 Console.WriteLine("-----------------------------------------");
-                Console.WriteLine("11. Go to Main Terminal");
+                Console.WriteLine("11. Go to Main Menu");
                 Console.WriteLine("========================================");
-                Console.Write("Select operation: ");
+                Console.Write("Please select an operation (1-11): ");
                 int operation = Convert.ToInt32(Console.ReadLine());
-                if (operation == 1)
+
+                switch (operation)
                 {
-                    operationcall.addbus(busdatalist);
-                }
-                else if (operation == 2)
-                {
-                    busdatalist.Print();
-                }
-                else if (operation == 3)
-                {
-                    operationcall.timesort(busdatalist);
-                }
-                else if (operation == 4)
-                {
-                    operationcall.removebus(busdatalist);
-                }
-                else if (operation == 5)
-                {
-                    Console.WriteLine("Enter the destination name");
-                    string distname = Console.ReadLine();
-                    Console.WriteLine("Enter the distance");
-                    float distance = float.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter the price");
-                    float price = float.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter the root number");
-                    int rootno = int.Parse(Console.ReadLine());
-                    distlist.AddBack(distname, distance, price, rootno);
-                }
-                else if (operation == 6)
-                {
-                    distlist.Print();
-                }
-                else if (operation == 7)
-                {
-                    Console.WriteLine("Enter the destination name");
-                    string distname = Console.ReadLine();
-                    distlist.deleteatdist(distname);
-                }
-                else if(operation == 8)
-                {
-                    Console.WriteLine("Enter your name: ");
-                    string name = Console.ReadLine();
-                    Console.WriteLine("Enter your username: ");
-                    string username = Console.ReadLine();
-                    Console.WriteLine("Enter your password: ");
-                    string password1 = Console.ReadLine();
-                    Console.WriteLine("Enter your email: ");
-                    string email = Console.ReadLine();
-                    Console.WriteLine("Enter your phone number: ");
-                    string phone = Console.ReadLine();
-                    Console.WriteLine("Enter your address: ");
-                    string address = Console.ReadLine();
-                    Console.WriteLine("Enter your NIC: ");
-                    string nic = Console.ReadLine();
-                    userlist.AddBack(name, username, password1, email, phone, address, nic);
-                }
-                else if (operation == 9)
-                {
-                    userlist.Print();
-                }
-                else if (operation == 10)
-                {
-                    Console.WriteLine("Enter the username");
-                    string username = Console.ReadLine();
-                    userlist.deleteuser(username);
-                }
-                else if (operation == 11)
-                {
-                    t_admin = false;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid operation");
+                    case 1:
+                        operationcall.addbus(busdatalist);
+                        break;
+                    case 2:
+                        busdatalist.Print();
+                        break;
+                    case 3:
+                        operationcall.timesort(busdatalist);
+                        break;
+                    case 4:
+                        operationcall.removebus(busdatalist);
+                        break;
+                    case 5:
+                        Console.Write("Enter the destination name: ");
+                        string distname = Console.ReadLine();
+                        Console.Write("Enter the distance: ");
+                        float distance = float.Parse(Console.ReadLine());
+                        Console.Write("Enter the price: ");
+                        float price = float.Parse(Console.ReadLine());
+                        Console.Write("Enter the root number: ");
+                        int rootno = int.Parse(Console.ReadLine());
+                        distlist.AddBack(distname, distance, price, rootno);
+                        Console.WriteLine("Destination added successfully!");
+                        break;
+                    case 6:
+                        Console.Write("Enter the root number: ");
+                        int regno = Convert.ToInt32(Console.ReadLine());
+                        distlist.printdistbyroot(regno);
+                        break;
+                    case 7:
+                        Console.Write("Enter the destination name to delete: ");
+                        string distnameToDelete = Console.ReadLine();
+                        distlist.deleteatdist(distnameToDelete);
+                        Console.WriteLine("Destination deleted successfully!");
+                        break;
+                    case 8:
+                        Console.Write("Enter your name: ");
+                        string name = Console.ReadLine();
+                        Console.Write("Enter your username: ");
+                        string username = Console.ReadLine();
+                        Console.Write("Enter your password: ");
+                        string password1 = Console.ReadLine();
+                        Console.Write("Enter your email: ");
+                        string email = Console.ReadLine();
+                        Console.Write("Enter your phone number: ");
+                        string phone = Console.ReadLine();
+                        Console.Write("Enter your address: ");
+                        string address = Console.ReadLine();
+                        Console.Write("Enter your NIC: ");
+                        string nic = Console.ReadLine();
+                        userlist.AddBack(name, username, password1, email, phone, address, nic);
+                        Console.WriteLine("User added successfully!");
+                        break;
+                    case 9:
+                        operationcall.printuser(userlist);
+                        break;
+                    case 10:
+                        Console.Write("Enter the username to delete: ");
+                        string usernameToDelete = Console.ReadLine();
+                        userlist.deleteuser(usernameToDelete);
+                        Console.WriteLine("User deleted successfully!");
+                        break;
+                    case 11:
+                        t_admin = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid operation selected.");
+                        break;
                 }
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
@@ -267,55 +267,57 @@ while (t == true)
         }
         else
         {
-            Console.WriteLine("Invalid password");
+            Console.WriteLine("Invalid password. Please try again.");
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
     }
-   
-    /////user side/////
-    else if (account == 2)
 
+    ///// User Side ///////
+    else if (account == 2)
     {
         Console.Clear();
         Console.WriteLine("========================================");
-        Console.WriteLine("          User login          ");
-        Console.WriteLine("\nDo you have an account? (y/n): ");
+        Console.WriteLine("          User Login          ");
+        Console.WriteLine("========================================");
+        Console.Write("Do you have an account? (y/n): ");
         string haveaccount = Console.ReadLine();
 
-        Console.WriteLine("========================================");
         if (haveaccount.ToLower() == "n")
         {
-            Console.WriteLine("Enter your name: ");
+            Console.WriteLine("Let's create a new account!");
+            Console.Write("Enter your name: ");
             string name = Console.ReadLine();
-            Console.WriteLine("Enter your username: ");
+            Console.Write("Enter your username: ");
             string username = Console.ReadLine();
-            Console.WriteLine("Enter your password: ");
+            Console.Write("Enter your password: ");
             string password = Console.ReadLine();
-            Console.WriteLine("Enter your email: ");
+            Console.Write("Enter your email: ");
             string email = Console.ReadLine();
-            Console.WriteLine("Enter your phone number: ");
+            Console.Write("Enter your phone number: ");
             string phone = Console.ReadLine();
-            Console.WriteLine("Enter your address: ");
+            Console.Write("Enter your address: ");
             string address = Console.ReadLine();
-            Console.WriteLine("Enter your NIC: ");
+            Console.Write("Enter your NIC: ");
             string nic = Console.ReadLine();
             userlist.AddBack(name, username, password, email, phone, address, nic);
+            Console.WriteLine("Account created successfully!");
         }
         else if (haveaccount.ToLower() == "y")
         {
+            Console.Clear();
             Console.WriteLine("========================================");
-            Console.WriteLine("Enter your username: ");
+            Console.WriteLine("          User Login          ");
+            Console.WriteLine("========================================");
+            Console.Write("Enter your username: ");
             string username = Console.ReadLine();
-            Console.WriteLine("Enter your password: ");
+            Console.Write("Enter your password: ");
             string password = Console.ReadLine();
-            Console.WriteLine("========================================");
 
             if (userlist.verification(username, password))
             {
-
-
-                Console.WriteLine("Welcome " + userlist.searchname(username));
+                Console.Clear();
+                Console.WriteLine("Welcome, " + userlist.searchname(username) + "!");
                 while (true)
                 {
                     Console.Clear();
@@ -326,58 +328,58 @@ while (t == true)
                     Console.WriteLine("2. View Bus List");
                     Console.WriteLine("3. Search Bus");
                     Console.WriteLine("4. Book Seat");
-                    Console.WriteLine("5. Go to Main Terminal");
+                    Console.WriteLine("5. Go to Main Menu");
                     Console.WriteLine("========================================");
-                    Console.Write("Select operation: ");
+                    Console.Write("Please select an operation (1-5): ");
                     int operation = Convert.ToInt32(Console.ReadLine());
-                    if (operation == 1)
-                    {
-                        Console.Write("Enter the root number: ");
-                        int rootno = Convert.ToInt32(Console.ReadLine());
-                        distlist.printdistbyroot(rootno);
-                    }
-                    else if (operation == 2)
-                    {
-                        Console.Write("Enter the root number: ");
-                        int rootno = Convert.ToInt32(Console.ReadLine());
-                        busdatalist.printbuslistbyroot(rootno);
-                    }
-                    else if (operation == 3)
-                    {
-                        Console.Write("Enter the destination: ");
-                        string destination = Console.ReadLine();
-                        Console.Write("Enter the time: ");
-                        float time = float.Parse(Console.ReadLine());
-                        operationcall.searchbus(distlist, busdatalist, destination, time);
-                    }
-                    else if (operation == 4)
-                    {
-                        Console.Write("Enter the bus registration number: ");
-                        string regno = Console.ReadLine();
-                        Console.Write("Enter the number of seats: ");
-                        int seat = Convert.ToInt32(Console.ReadLine());
-                        busdatalist.bookseat(regno, seat);
-                    }
-                    else if (operation == 5)
-                    {
-                        break;
 
-                    }
-                    else
+                    switch (operation)
                     {
-                        Console.WriteLine("Invalid operation");
+                        case 1:
+                            Console.Write("Enter the root number: ");
+                            int rootno = Convert.ToInt32(Console.ReadLine());
+                            distlist.printdistbyroot(rootno);
+                            break;
+                        case 2:
+                            Console.Write("Enter the root number: ");
+                            int rootno2 = Convert.ToInt32(Console.ReadLine());
+                            busdatalist.printbuslistbyroot(rootno2);
+                            break;
+                        case 3:
+                            Console.Write("Enter the destination: ");
+                            string destination = Console.ReadLine();
+                            Console.Write("Enter the time: ");
+                            float time = float.Parse(Console.ReadLine());
+                            operationcall.searchbus(distlist, busdatalist, destination, time);
+                            break;
+                        case 4:
+                            Console.Write("Enter the bus registration number: ");
+                            string regno = Console.ReadLine();
+                            Console.Write("Enter the number of seats: ");
+                            int seat = Convert.ToInt32(Console.ReadLine());
+                            busdatalist.bookseat(regno, seat);
+                            break;
+                        case 5:
+                            break;
+                        default:
+                            Console.WriteLine("Invalid operation selected.");
+                            break;
                     }
+                    if (operation == 5) break;
                     Console.WriteLine("Press any key to continue...");
                     Console.ReadKey();
                 }
             }
-
+            else
+            {
+                Console.WriteLine("Invalid username or password. Please try again.");
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+            }
         }
-        
-        
-        
     }
-    ///// exit/////
+
+    ///// Exit ///////
     else if (account == 3)
     {
         Console.Write("Are you sure you want to exit? (y/n): ");
@@ -387,10 +389,11 @@ while (t == true)
             t = false;
         }
     }
-    ////////////error////////
+
+    ///// Error Handling ///////
     else
     {
-        Console.WriteLine("Invalid account");
+        Console.WriteLine("Invalid option selected. Please try again.");
         Console.WriteLine("Press any key to continue...");
         Console.ReadKey();
     }

@@ -30,8 +30,12 @@ namespace Deport_Go
             address = addressget;
             nic = nicget;
         }
+
         
-        
+            
+
+
+
     }
 }
 

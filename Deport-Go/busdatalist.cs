@@ -144,6 +144,7 @@ namespace Deport_Go
             prev.Next = temp.Next;
             Console.WriteLine($"Bus {regno} removed successfully.");
         }
+/////////////////////////////////////////////////////bubble sort//////////////////////////////////////////////
 
         public void timesort(busdatalist x, float time)
         {
@@ -227,9 +228,9 @@ namespace Deport_Go
             }
             Console.WriteLine("***************");
             Console.WriteLine("Sort By:");
-            Console.WriteLine("1.Time");
+            Console.WriteLine("1.Arrival Time");
             Console.WriteLine("2.Available Seats");
-            Console.WriteLine("Back to User Panel");
+            Console.WriteLine("3.Back to User Panel");
             Console.WriteLine("***************");
             int sortby = Convert.ToInt32(Console.ReadLine());
             if (sortby == 1)
@@ -257,7 +258,7 @@ namespace Deport_Go
             x.Head = MergeSort(x.Head, rootno);
             printbuslistbyroot(rootno);
         }
-
+        /////////////////////////////////////////////merge sort/////////////////////////////////////////////////////////
         private busnode? MergeSort(busnode? head, int rootno)
         {
             if (head == null || head.Next == null)

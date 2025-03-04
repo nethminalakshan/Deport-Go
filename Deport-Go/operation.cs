@@ -29,21 +29,21 @@ namespace Deport_Go
             int rootno = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter the Avilable seat count");
             int seat = int.Parse(Console.ReadLine());
-            busdatalist.AddBack(regno, busname, time, rootno,seat);
+            busdatalist.AddBack(regno, busname, time, rootno, seat);
         }
 
         public void removebus(busdatalist busdatalist)
         {
-            
+
             Console.WriteLine("Enter bus Reg number");
-            string reg=Console.ReadLine();
+            string reg = Console.ReadLine();
             busdatalist.deleteatreg(reg);
 
         }
         public void timesort(busdatalist y)
         {
             float time;
-            busdatalist x= new busdatalist();
+            busdatalist x = new busdatalist();
             Console.WriteLine("Enter the time now");
             time = float.Parse(Console.ReadLine());
             x.timesort(y, time);
@@ -51,11 +51,11 @@ namespace Deport_Go
 
         ///user side
         ///
-        
-        public void printdist(int rootno)
+
+        public void printdist(distdatalist x, int rootno)
         {
-            distdatalist x = new distdatalist();
             x.printdistbyroot(rootno);
+
 
         }
 
@@ -65,25 +65,61 @@ namespace Deport_Go
             x.printbuslistbyroot(rootno);
         }
 
-        public void searchbus( distdatalist y,busdatalist x,string destination, float time)
+        public void searchbus(distdatalist y, busdatalist x, string destination, float time)
         {
             Console.WriteLine("Destination: " + destination);
-            int rootno = findroot(y,destination);
+            int rootno = findroot(y, destination);
             findbus(x, rootno, time);
 
         }
 
-        private int findroot( distdatalist y,string destination)
+        private int findroot(distdatalist y, string destination)
         {
-            
+
             return y.findroot(destination);
         }
         private void findbus(busdatalist x, int rootno, float time)
         {
-   
-            x.timeandrootbussarch(x,rootno, time);
+
+            x.timeandrootbussarch(x, rootno, time);
         }
 
+        public void printuser(userlist x)
+        {
+            while (true)
+
+            {
+                Console.WriteLine("\n-------------------------");
+                Console.WriteLine("1.sort by nic number");
+                Console.WriteLine("2.sort by username");
+                Console.WriteLine("3.sort by Phone number");
+                Console.WriteLine("4.back to the admin panel");
+
+                int choice = int.Parse(Console.ReadLine());
+
+                if (choice == 1)
+                {
+                    x.sortbynic(x);
+                }
+                else if (choice == 2)
+                {
+                    x.sortbyusername(x);
+                }
+                else if (choice == 3)
+                {
+                    x.sortbyphone(x);
+                }
+                else if (choice == 4)
+                {
+
+                    break;
+
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input");
+                }
+            }
 
 
 
@@ -91,6 +127,11 @@ namespace Deport_Go
 
 
 
+
+
+
+
+        }
 
     }
 }
